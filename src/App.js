@@ -4,7 +4,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import axios from 'axios';
 import './App.css'; 
 
-// CRITICAL: Connects the PDF parser worke
+// CRITICAL: Connects the PDF parser worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
 const indianLanguages = [
@@ -346,7 +346,8 @@ function App() {
             </button>
           </div>
 
-          {appState === "done" && (
+          {/* THE UPDATED AUDIO LOGIC SECTION */}
+          {(appState === "done" || appState === "generating_audio") && (
             <div className="glass-panel" style={{ borderBottomColor: '#0abde3' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                 <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#ff6b6b' }}>AI Translation:</h3>
@@ -366,17 +367,32 @@ function App() {
               
               {isTypingComplete && (
                 <div style={{ marginTop: '20px' }}>
-                  {audioUrl ? (
+                  
+                  {appState === "generating_audio" ? (
+                    
+                    <div className="surfer-loader">
+                      <div className="surfer-boy">🏃‍♂️</div>
+                      <div className="track-lines"></div>
+                      <p style={{ margin: '15px 0 0 0', fontWeight: '800', color: '#10ac84', fontSize: '1.1rem' }}>
+                        Synthesizing Audio...
+                      </p>
+                    </div>
+
+                  ) : audioUrl ? (
+                    
                     <div style={{ background: '#f1f2f6', padding: '15px', borderRadius: '15px', border: '3px solid #dfe4ea' }}>
                       <p style={{ margin: '0 0 10px 0', fontSize: '0.95rem', color: '#10ac84', textAlign: 'center', fontWeight: '700' }}>
                         ✅ Audio Synthesized Successfully
                       </p>
                       <audio src={audioUrl} controls autoPlay style={{ width: '100%', height: '40px', outline: 'none' }} />
                     </div>
+
                   ) : (
+
                     <button className="audio-btn" onClick={handleSpeak} style={{ width: '100%' }}>
                       🔊 Generate AI Speech
                     </button>
+
                   )}
                 </div>
               )}

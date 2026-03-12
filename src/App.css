@@ -232,3 +232,43 @@ button.audio-btn:active {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+/* --- SUBWAY SURFER LOADER --- */
+.surfer-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f1f2f6;
+  padding: 20px;
+  border-radius: 20px;
+  border: 4px dashed #1dd1a1;
+  margin-top: 20px;
+}
+
+/* The running boy with a 3D drop-shadow */
+.surfer-boy {
+  font-size: 3.5rem;
+  display: inline-block;
+  animation: surfRun 0.4s infinite alternate cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: drop-shadow(0 15px 5px rgba(0,0,0,0.15));
+}
+
+/* The moving train tracks */
+.track-lines {
+  width: 120px;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #a4b0be, #a4b0be 15px, transparent 15px, transparent 30px);
+  border-radius: 4px;
+  margin-top: 5px;
+  animation: trackMove 0.4s infinite linear;
+}
+
+@keyframes surfRun {
+  0% { transform: translateY(0) scaleY(0.95) rotate(-5deg); }
+  100% { transform: translateY(-20px) scaleY(1.05) rotate(5deg); }
+}
+
+@keyframes trackMove {
+  0% { background-position: 0 0; }
+  100% { background-position: -30px 0; }
+}

@@ -73,3 +73,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 "I realized that OCR (Optical Character Recognition) is computationally heavy and inefficient for digital PDFs. So, I engineered a dual-router in the frontend. If a user uploads an image, it passes through Tesseract's neural network. But if they upload a PDF, the app intercepts it, reads the raw array buffer, and parses the vector text directly using Mozilla's PDF.js engine. This makes PDF extraction nearly 100x faster than traditional image scanning."
 
 Save that file and try uploading a PDF! Notice
+🏆 Your New Faculty Pitch:
+When your teacher hears this voice, they will immediately ask how you did it. Tell them this:
+
+"Standard TTS libraries use outdated concatenative synthesis, which sounds incredibly robotic. For this project, I engineered the backend to stream asynchronous binary data directly from Microsoft Azure's Deep Neural TTS Engine. It uses deep learning models to process natural cadence, breathing, and pitch, resulting in a studio-quality, cinematic narrator voice."
