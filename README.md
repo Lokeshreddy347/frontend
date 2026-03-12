@@ -68,3 +68,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+"I realized that OCR (Optical Character Recognition) is computationally heavy and inefficient for digital PDFs. So, I engineered a dual-router in the frontend. If a user uploads an image, it passes through Tesseract's neural network. But if they upload a PDF, the app intercepts it, reads the raw array buffer, and parses the vector text directly using Mozilla's PDF.js engine. This makes PDF extraction nearly 100x faster than traditional image scanning."
+
+Save that file and try uploading a PDF! Notice

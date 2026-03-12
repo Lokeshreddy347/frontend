@@ -1,38 +1,234 @@
-.App {
-  text-align: center;
+/* App.css - Candy Arcade Theme */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Fredoka', sans-serif; /* Super rounded, friendly game font */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body, html {
+  margin: 0;
+  padding: 0;
   min-height: 100vh;
+  /* Smooth 4-color pastel candy gradient */
+  background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+  background-size: 400% 400%;
+  animation: candyGradient 12s ease infinite;
+  color: #222f3e;
+}
+
+/* --- SPLASH SCREEN --- */
+.splash-screen {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: #a1c4fd; 
   color: white;
+  animation: popInOut 2.5s ease-in-out forwards;
 }
 
-.App-link {
-  color: #61dafb;
+.splash-logo {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-shadow: 0 6px 0 #7fa6eb; 
+  animation: candyFloat 2s infinite alternate;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* --- IDLE SCREEN & CAMERA BUTTON --- */
+.idle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  animation: slideUp 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.camera-btn-container {
+  margin-top: -50px;
+}
+
+/* Coral Pink Bouncy Camera Button */
+.pulse-btn {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #ff6b6b; 
+  border: 4px solid #fff;
+  color: white;
+  font-size: 4rem;
+  cursor: pointer;
+  box-shadow: 0 12px 0 #ee5253, 0 20px 25px rgba(238, 82, 83, 0.4);
+  transition: all 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: candyFloat 3s ease-in-out infinite;
+}
+
+.pulse-btn:active {
+  transform: translateY(12px) scale(0.95);
+  box-shadow: 0 0px 0 #ee5253, 0 5px 10px rgba(238, 82, 83, 0.4);
+}
+
+/* --- PANELS (Game Menus) --- */
+.active-ui {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.glass-panel {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 30px;
+  border: 4px solid #f1f2f6;
+  border-bottom: 8px solid #dfe4ea; /* Chunky 3D border */
+  margin-bottom: 25px;
+  animation: slideUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+}
+
+/* Staggered animation so panels load one after another */
+.glass-panel:nth-child(2) { animation-delay: 0.1s; }
+.glass-panel:nth-child(3) { animation-delay: 0.2s; }
+.glass-panel:nth-child(4) { animation-delay: 0.3s; }
+.glass-panel:nth-child(5) { animation-delay: 0.4s; }
+
+.glass-panel img {
+  width: 100%;
+  border-radius: 20px;
+  border: 4px solid #f1f2f6;
+}
+
+/* --- CHUNKY 3D BUTTONS --- */
+select, button.action-btn, button.audio-btn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 15px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+
+select {
+  background: #f1f2f6;
+  border: 3px solid #dfe4ea;
+  color: #2f3542;
+  appearance: none; /* Cleans up the dropdown arrow */
+}
+
+/* Cyan Translate Button */
+button.action-btn {
+  background: #48dbfb;
+  color: #015c70;
+  border: 3px solid #fff;
+  box-shadow: 0 8px 0 #0abde3, 0 15px 20px rgba(10, 189, 227, 0.3);
+  transition: all 0.1s;
+}
+
+button.action-btn:active:not(:disabled) {
+  transform: translateY(8px) scale(0.98);
+  box-shadow: 0 0 0 #0abde3;
+}
+
+button.action-btn:disabled {
+  background: #f1f2f6;
+  box-shadow: 0 8px 0 #dfe4ea;
+  color: #a4b0be;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Mint Green Audio Button */
+button.audio-btn {
+  background: #1dd1a1;
+  color: #005f43;
+  border: 3px solid #fff;
+  box-shadow: 0 8px 0 #10ac84, 0 15px 20px rgba(16, 172, 132, 0.3);
+  transition: all 0.1s;
+}
+
+button.audio-btn:active {
+  transform: translateY(8px) scale(0.98);
+  box-shadow: 0 0 0 #10ac84;
+}
+
+/* --- STATUS & CURSOR --- */
+.status-badge {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #fff200;
+  border: 3px solid #eccc68;
+  border-radius: 25px;
+  color: #d35400;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 0 #eccc68;
+  animation: candyFloat 2s infinite ease-in-out;
+}
+
+.cursor {
+  display: inline-block;
+  width: 12px;
+  height: 24px;
+  background-color: #ff6b6b;
+  margin-left: 6px;
+  border-radius: 5px;
+  animation: blink 0.8s step-end infinite;
+}
+
+/* --- HISTORY DRAWER --- */
+.history-drawer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  padding: 25px;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+  border-top: 6px solid #f1f2f6;
+}
+
+.history-item {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 18px;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  border: 3px solid #f1f2f6;
+  color: #57606f;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes candyGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes candyFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
