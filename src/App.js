@@ -4,7 +4,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import axios from 'axios';
 import './App.css'; 
 
-// CRITICAL: Connects the PDF parser worker
+// CRITICAL: Connects the PDF parser worke
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
 const indianLanguages = [
